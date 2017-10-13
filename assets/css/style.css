@@ -24,8 +24,10 @@ h2#tryAgain {
 #box {
     border-style: solid;
     border-color: teal;
-    height: 253px;
-    width: 645px;
+    height: 223px;
+    width: 33.33333333%;
+    margin: 15px;
+    margin-left: 0;
 }
 #insideBox {
 	color:teal;
@@ -34,8 +36,27 @@ h2#tryAgain {
 }
 
 p#correctGuesses {
-	margin-left:25%;
-}   
     
+    width: 108%;
+}
+
+#winnerButton { 
+    border-radius: 25px;
+    background: green;
+    padding: 4px;
+    width: 193px;
+    height: 25px;
+    font-size: 11px;
+    color: white;
+}
+#loserButton { 
+    border-radius: 25px;
+    background: teal;
+    padding: 4px;
+    width: 193px;
+    height: 25px;
+    font-size: 11px;
+    color: white;
+}
   
     

@@ -1,48 +1,46 @@
 
+	
+	//choices of words includes "-" and "spaces"
 	var arrChoices = ["solar system", "exo-planets", "nebulae", "star clusters", "x-ray pulsars"];// arrays for the choices //
 	var compWord = arrChoices[Math.floor(Math.random() * arrChoices.length)].toLowerCase();//random
 	var blankWord = [];	// variable that will hold the BLANKS//
 	var userInput = "";//keys press from the keyboard
 	var lettersUsed = "";//store all used letters - right/wrong
 	var guessesLeft = 10;
-	var wins = 0;//just a counter for calling win();
+	var wins = 0;//just a counter
 
 	//loop that draws blanks//
 	for (var i = 0; i <= compWord.length; i++) {
-			blankWord.push("__");
-			
-							
-		    //display the blanks to the user//
-		    document.getElementById("blankSpaces").innerHTML = blankWord.join(" ");
+		blankWord.push("__");
+		
+						
+	    //display the blanks to the user//
+	    document.getElementById("blankSpaces").innerHTML = blankWord.join(" ");
 		    
 	}
-		    var space = compWord.indexOf(" ");
-		    var dash = compWord.indexOf("-");
-		 	blankWord.splice(space,0,"&nbsp &nbsp");
-		 	blankWord.splice(dash,1,"-");
-		 	blankWord.pop("__");//pop spaces - for space
-		 	blankWord.pop("__");//pop spaces - for dash
-		    document.getElementById("blankSpaces").innerHTML = blankWord.join(" ");
+	    var space = compWord.indexOf(" ");
+	    var dash = compWord.indexOf("-");
+	 	blankWord.splice(space,0,"&nbsp &nbsp");
+	 	blankWord.splice(dash,1,"-");
+	 	blankWord.pop("__");//pop spaces - for space
+	 	blankWord.pop("__");//pop spaces - for dash
+	    document.getElementById("blankSpaces").innerHTML = blankWord.join(" ");
 
-			console.log(compWord);
-			console.log(compWord.length);
-			console.log(blankWord);			
+		console.log(compWord);
+		console.log(compWord.length);
+		console.log(blankWord);			
 
 
 									
-
-	function checker() {	
-	    	if ((arrChoices[0]) && (arrChoices[1]) && (arrChoices[3])) {
+			//function checker gives each letter a one point value to increment "wins" by one - other wise, will turn a value equal to the number of times the letter is repeated
+	
+	function checker() {//words with ONE SPACES - or NO SPACES	
+	    	if ((arrChoices[0]) && (arrChoices[1]) && (arrChoices[3]) && (arrChoices[2])) {
 	    		if (wins === (compWord.length-1)) {
 	    		 // nothing
 	    		}
-	    	} 
-	    	if (arrChoices[2]) {
-	    		if (wins === (compWord.length-1)) {
-	    		//nothing
-	    		} 
 	    	}
-	    	if (arrChoices[4]) {
+	    	if (arrChoices[4]) {//words with DASHES and SPACES
 	    		if (wins === (compWord.length-2)) {
 	    		//nothing
 	    		} 
@@ -56,10 +54,34 @@
 
 	function win () {
 		
-		var cvb = document.getElementById("displayWin").innerHTML = "YOU'RE AWESOME!!!" + "<br>" + "Try another word - click refresh";
+		var cvb = document.getElementById("displayWin").innerHTML = "YOU'RE AWESOME!!!";
 		document.getElementById("displayWin").style.Color = "green";//here style not in css (experiment)
+	}
+	
+	function winButton(){
+		var btn = document.createElement("BUTTON");
+		var t = document.createTextNode("next word");// Create a text node
+		btn.appendChild(t); 
+		btn.setAttribute("id", "winnerButton");
+	    document.getElementById("buttonHere").appendChild(btn);
+	}
+
+	function loseButton(){
+		var btn = document.createElement("BUTTON","#lose");
+		var t = document.createTextNode("Ooops, try again!");// Create a text node
+		btn.appendChild(t); 
+	    btn.setAttribute("id", "loserButton");
+		document.getElementById("buttonHere").appendChild(btn);
+	   	
 
 	}
+
+	document.getElementById("buttonHere").addEventListener("click", myFunction);
+
+	function myFunction() {
+	location.reload();
+	}
+	
 
 	function disable(){//disables keyboard onkey press//
 				document.onkeypress = function (a) {//not sure why "e"
@@ -221,26 +243,28 @@
 	    		console.log("user lost!");
 	    		disable();
 	    		lose();
+	    		loseButton();
 
 	    	}
 
 	
-	    		checker();
+	    		checker();//make sure that words are categorized as (no space, one space, space and a dash)
 	    		console.log("wins :" + wins);
 	    		console.log("word length: " + compWord.length);
 	    		console.log("blanks: " + blankWord.length);
-	    		if (wins === blankWord.length) {
+	    		if (wins === blankWord.length) {//word length and blanks set to equal
 	    			win();
 	    		}
 
 				
-				var blanks = blankWord.toString();
-				var count = (blanks.match(/__/g) || []).length;
+				var blanks = blankWord.toString();//turn array to string and target each letter (see below)
+				var count = (blanks.match(/__/g) || []).length;//use match method g=global AND counts the number of blanks
 				console.log(count);
 
-				if (count === 0) {
+				if (count === 0) {//win counter
 					win();
 					disable();
+					winButton()();
 				}
 
 
