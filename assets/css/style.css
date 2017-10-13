@@ -1,0 +1,41 @@
+.jumbotron-center {
+    text-align: center;
+    color: teal;
+    height: 366px;
+    padding-top: 40px;
+}
+
+#messageBoard, #userInput {
+	color:teal;
+}
+
+h2#displayWin {
+	color: green;
+}
+
+h2#gameOver {
+    color:red;
+}
+
+#removeLater {
+	color:teal;
+}
+
+#box {
+    border-style: solid;
+    border-color: teal;
+    height: 253px;
+    width: 645px;
+}
+#insideBox {
+	color:teal;
+	font-size: 15px;
+	text-align: center;
+}
+
+p#correctGuesses {
+	margin-left:25%;
+}   
+    
+  
+    
