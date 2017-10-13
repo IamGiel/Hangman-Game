@@ -50,23 +50,13 @@
 	    }
 
 	function lose() {//diplay lose: createElement that has text//
-			
-			var para = document.createElement("h2");
-			var t = document.createTextNode("GAME OVER!!!");
-			para.setAttribute("id", "gameOver");//css style = red
-			// para.appendChild(t);
-			document.getElementById("displayWin").appendChild(para);
-			var parent = document.getElementById("div1");
-			var child = document.getElementById("removeLater");
-			parent.removeChild(child);//remove the child element (not sure if ill keep this - but ill experiment: w3 schools sample) 
-			document.getElementById("tryAgain").innerHTML = "Try Again :)";
 
-
+			document.getElementById("tryAgain").innerHTML = "GAME OVER!!! Try Again";
 	}
 
 	function win () {
 		
-		var cvb = document.getElementById("displayWin").innerHTML = "YOU'RE AWESOME!!!";
+		var cvb = document.getElementById("displayWin").innerHTML = "YOU'RE AWESOME!!!" + "<br>" + "Try another word - click refresh";
 		document.getElementById("displayWin").style.Color = "green";//here style not in css (experiment)
 
 	}
@@ -83,6 +73,7 @@
 			}
 
 
+
 			//keyboard is pressed: 
 	document.onkeypress = function(event) {
 			var inThere = false;//setting up boolean outside for-loops
@@ -92,18 +83,20 @@
 		    lettersUsed += " " + userInput;//stores all letters pressed - using global variable
 		    document.getElementById("userInput").innerHTML = lettersUsed;//store values in it and display to HTML
 		    console.log(userInput);//checking...
-
+		    console.log(lettersUsed);
 		    //loop to determin if the correct guesses are being typed again - and prevent it from being pushed again.
-		    for (var i = 0; i <= blankWord.length; i++) {
+		    
+
+
+		   for (var i = 0; i <= blankWord.length; i++) {
 		    	 var bwLetters = blankWord[i];
 		    	
-		    	
+		    	//prevent double typing a letter
 		    	if (userInput === bwLetters) {  
 			        alert("You pressed " + userInput + " already! Try again!");
 			        wins = wins -1;
 			     } 
 			}
-
 		
 			//loop that does the pushing/replacing blanks with letters at their corresponding index							
 		   for (var i = 0; i <= compWord.length; i++) {
@@ -124,6 +117,8 @@
 	    		wins++;
 	    		
 	    	}
+
+
 
 				
 				// var count = (blankWord.match(/_/g) || []).length;
@@ -247,6 +242,8 @@
 					win();
 					disable();
 				}
+
+
 
 
 
