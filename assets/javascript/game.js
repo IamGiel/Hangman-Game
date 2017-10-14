@@ -64,6 +64,9 @@
 		btn.appendChild(t); 
 		btn.setAttribute("id", "winnerButton");
 	    document.getElementById("buttonHere").appendChild(btn);
+
+	    var audio = new Audio('assets/Audio-HTML5-code/audio-file.mp3');
+		audio.play();//play a sound when user wins
 	}
 
 	function loseButton(){
@@ -72,9 +75,7 @@
 		btn.appendChild(t); 
 	    btn.setAttribute("id", "loserButton");
 		document.getElementById("buttonHere").appendChild(btn);
-	   	
-
-	}
+	   }
 
 	document.getElementById("buttonHere").addEventListener("click", myFunction);
 
